@@ -13,7 +13,8 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "hashicorp/bionic64"
-  config.vm.hostname = "UbuntuVM"
+  config.vm.hostname = "redisdev"
+  #config.vm.define = "redisdev"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -29,7 +30,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
-  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 6379, host: 9001
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -58,6 +59,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
+      vb.name = "redisdev"
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
@@ -78,5 +80,7 @@ Vagrant.configure("2") do |config|
      apt-get install -y pkg-config
      apt-get install -y tcl
      sysctl vm.overcommit_memory=1
+     sysctl -w net.core.somaxconn=1024
+     sysctl -w fs.file-max=500000
   SHELL
 end
