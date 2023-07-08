@@ -1,0 +1,4 @@
+# This file contains the configuration for build redis dev environment.
+
+configs:
+   redis_folder: '/Users/admin/UCSC/AdvDevOps/redis'
