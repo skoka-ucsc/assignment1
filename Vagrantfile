@@ -2,7 +2,24 @@
 # vi: set ft=ruby :
 
 require 'yaml'
+require 'io/console'
 
+# Check if the contents of the Vagrantfile have changed in the git repo.
+# If yes, inform the user that the contents of Vagrantfile have changed
+# and provide an option to the user to exit the program.
+file_changed = `git diff Vagrantfile`
+unless file_changed.empty?
+  print "The contents of the Vagrantfile have changed in the git repo.\n"
+  print "Do you want to continue running with older Vagrantfile? (y/n)\n"
+  input = STDIN.getch
+  print input
+  if input == 'n' or input == 'N'
+    print "\nExiting..."
+    exit
+  end
+end
+
+# Get the dev environment configuration from config.yml file
 cur_dir = File.dirname(File.expand_path(__FILE__))
 configs = YAML.load_file("#{cur_dir}/config.yml")
 vagrant_config = configs['configs']
