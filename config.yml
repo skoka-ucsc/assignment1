@@ -3,3 +3,4 @@
 configs:
    redis_folder: '/Users/admin/UCSC/AdvDevOps/redis'
    vagrant_provider: 'virtualbox'
+   redis_port: 9001

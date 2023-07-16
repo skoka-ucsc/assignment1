@@ -11,6 +11,7 @@ software using Vagrant.
 ## User can provide the configuration using config.yml file
 - redis_folder : folder path for location of the cloned redis git repository.
 - vagrant_provider : backing provider for Vagrant.
+- redis_port: host port on which redis server is accessible.
 
 ## Instructions to use the dev environment
 1. Run `vagrant up` command to bring up the vagrant box.
@@ -18,3 +19,4 @@ software using Vagrant.
 3. Run `cd /redis` command to change directory to the folder where the cloned redis git repository exists.
 4. Run `./make src` command to build redis software.
 5. Run `cd src;./redis-server` command to run the redis server.
+6. Run `vagrant halt` command to shut down the vagrant box.

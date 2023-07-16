@@ -5,7 +5,7 @@ require 'yaml'
 require 'io/console'
 
 # Version number of this Vagrantfile
-VERSION_NUMBER = 4
+VERSION_NUMBER = 5
 
 # Check if the version number of the Vagrantfile have changed in the git repo.
 # If yes, inform the user that the Vagrantfile has changed and provide an option
@@ -53,12 +53,12 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 6379, host: vagrant_config['redis_port']
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
-  config.vm.network "forwarded_port", guest: 6379, host: 9001
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
