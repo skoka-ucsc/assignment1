@@ -5,16 +5,16 @@ require 'yaml'
 require 'io/console'
 
 # Version number of this Vagrantfile
-VERSION_NUMBER = 2
+VERSION_NUMBER = 3
 
 # Check if the version number of the Vagrantfile have changed in the git repo.
 # If yes, inform the user that the Vagrantfile has changed and provide an option
 # to the user to exit the program.
 vagrantfile_url = "https://api.github.com/repos/skoka-ucsc/assignment1/contents/Vagrantfile"
-LATEST_VERSION_NUMBER=`curl -s -H $vagrantfile_url | grep VERSION_NUMBER Vagrantfile | cut -d= -f2 | xargs`
-print "LATEST_VERSION_NUMBER=#{LATEST_VERSION_NUMBER}\n"
-if LATEST_VERSION_NUMBER > VERSION_NUMBER 
-  print "The version number of the Vagrantfile has changed in the git repo to #{LATEST_VERSION_NUMBER}.\n"
+curl_header = "Accept:application/vnd.github.v3.raw"
+latest_version_number = `curl -s -H #{curl_header} #{vagrantfile_url} | grep "VERSION_NUMBER = " | grep -v curl | cut -d= -f2 | xargs`
+if latest_version_number.to_i > VERSION_NUMBER
+  print "The version number of the Vagrantfile has changed in the git repo to #{latest_version_number.to_i}.\n"
   print "Do you want to continue running with older Vagrantfile with version number #{VERSION_NUMBER}? (y/n)\n"
   input = STDIN.getch
   print input
