@@ -5,7 +5,7 @@ require 'yaml'
 require 'io/console'
 
 # Version number of this Vagrantfile
-VERSION_NUMBER = 3
+VERSION_NUMBER = 4
 
 # Check if the version number of the Vagrantfile have changed in the git repo.
 # If yes, inform the user that the Vagrantfile has changed and provide an option
@@ -86,7 +86,7 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  config.vm.provider "virtualbox" do |vb|
+  config.vm.provider vagrant_config['vagrant_provider'] do |vb|
       vb.name = "redisdev"
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
