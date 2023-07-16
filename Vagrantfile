@@ -4,13 +4,18 @@
 require 'yaml'
 require 'io/console'
 
-# Check if the contents of the Vagrantfile have changed in the git repo.
-# If yes, inform the user that the contents of Vagrantfile have changed
-# and provide an option to the user to exit the program.
-file_changed = `git diff Vagrantfile`
-unless file_changed.empty?
-  print "The contents of the Vagrantfile have changed in the git repo.\n"
-  print "Do you want to continue running with older Vagrantfile? (y/n)\n"
+# Version number of this Vagrantfile
+VERSION_NUMBER = 2
+
+# Check if the version number of the Vagrantfile have changed in the git repo.
+# If yes, inform the user that the Vagrantfile has changed and provide an option
+# to the user to exit the program.
+vagrantfile_url = "https://api.github.com/repos/skoka-ucsc/assignment1/contents/Vagrantfile"
+LATEST_VERSION_NUMBER=`curl -s -H $vagrantfile_url | grep VERSION_NUMBER Vagrantfile | cut -d= -f2 | xargs`
+print "LATEST_VERSION_NUMBER=#{LATEST_VERSION_NUMBER}\n"
+if LATEST_VERSION_NUMBER > VERSION_NUMBER 
+  print "The version number of the Vagrantfile has changed in the git repo to #{LATEST_VERSION_NUMBER}.\n"
+  print "Do you want to continue running with older Vagrantfile with version number #{VERSION_NUMBER}? (y/n)\n"
   input = STDIN.getch
   print input
   if input == 'n' or input == 'N'
