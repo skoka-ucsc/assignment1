@@ -5,7 +5,7 @@ require 'yaml'
 require 'io/console'
 
 # Version number of this Vagrantfile
-VERSION_NUMBER = 5
+VERSION_NUMBER = 6
 
 # Check if the version number of the Vagrantfile have changed in the git repo.
 # If yes, inform the user that the Vagrantfile has changed and provide an option
@@ -42,7 +42,6 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "hashicorp/bionic64"
   config.vm.hostname = "redisdev"
-  #config.vm.define = "redisdev"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
