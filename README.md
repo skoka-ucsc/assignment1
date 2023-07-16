@@ -17,8 +17,8 @@ software using Vagrant.
 1. Run `vagrant up` command to bring up the vagrant box.
 2. Run `vagrant ssh` command to ssh into the vagrant box.
 3. Run `cd /redis` command to change directory to the folder where the cloned redis git repository exists.
-4. Run `.make distclean` command clean previous build remnants.
-5. Run `./make` command to build redis software.
+4. Run `make distclean` command clean previous build remnants.
+5. Run `make` command to build redis software.
 6. Run `cd src;./redis-server` command to run the redis server.
 7. Run `vagrant halt` command to shut down the vagrant box.
 

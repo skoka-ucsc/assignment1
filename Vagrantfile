@@ -5,7 +5,7 @@ require 'yaml'
 require 'io/console'
 
 # Version number of this Vagrantfile
-VERSION_NUMBER = 6
+VERSION_NUMBER = 7
 
 # Check if the version number of the Vagrantfile have changed in the git repo.
 # If yes, inform the user that the Vagrantfile has changed and provide an option
@@ -101,6 +101,7 @@ Vagrant.configure("2") do |config|
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+     export DEBIAN_FRONTEND=noninteractive
      apt-get update
      apt-get install -y build-essential
      apt-get install -y libsystemd-dev
